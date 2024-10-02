@@ -3,11 +3,11 @@ const { callGeminiAPI } = require('../utils/callGeminiAPI');
 module.exports = {
   name: 'gemini',
   description: 'Ask a question to the Gemini AI',
-  author: 'ChatGPT',
+  author: 'Biru',
   async execute(senderId, args, pageAccessToken, sendMessage) {
     const prompt = args.join(' ');
     try {
-      sendMessage(senderId, { text: 'Please wait, I am processing your request...' }, pageAccessToken);
+      sendMessage(senderId, { text: '' }, pageAccessToken);
       const response = await callGeminiAPI(prompt);
 
       // Split the response into chunks if it exceeds 2000 characters
@@ -22,7 +22,7 @@ module.exports = {
       }
     } catch (error) {
       console.error('Error calling Gemini API:', error);
-      sendMessage(senderId, { text: 'Sorry, there was an error processing your request.' }, pageAccessToken);
+      sendMessage(senderId, { text: 'Sorry, there was an error' }, pageAccessToken);
     }
   }
 };
